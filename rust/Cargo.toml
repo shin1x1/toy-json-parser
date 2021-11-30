@@ -1,5 +1,5 @@
 [package]
-name = "rust"
+name = "rust-toy-json-parser"
 version = "0.1.0"
 authors = ["shin1x1 <shin1x1@gmail.com>"]
 edition = "2018"
