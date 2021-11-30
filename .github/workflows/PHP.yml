@@ -3,7 +3,7 @@ name: PHP
 on:
   push:
     paths:
-      - php/**
+      - PHP/**
 
 jobs:
   build:
@@ -14,11 +14,13 @@ jobs:
       id: composer-cache
       uses: actions/cache@v2
       with:
-        path: php/vendor
+        path: PHP/vendor
         key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
         restore-keys: |
           ${{ runner.os }}-php-
     - name: Setup
-      run: cd php && make setup
+      run: make setup
+      working-directory: PHP
     - name: Run test
-      run: cd php && make test
+      run: make test
+      working-directory: PHP
