@@ -1,0 +1,19 @@
+name: Scala3
+
+on:
+  push:
+    paths:
+      - Scala3/**
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: coursier/cache-action@v6
+      - uses: coursier/setup-action@v1
+      - run: java -version
+      - run: cs java -version
+      - name: Run test
+        run: sbt test
+        working-directory: Scala3
