@@ -1,0 +1,4 @@
+# https://github.com/github/gitignore/blob/master/Rust.gitignore
+debug/
+target/
+**/*.rs.bk
