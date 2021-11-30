@@ -1,0 +1,24 @@
+name: PHP
+
+on:
+  push:
+    paths:
+      - php/**
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Cache Composer packages
+      id: composer-cache
+      uses: actions/cache@v2
+      with:
+        path: php/vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
+    - name: Setup
+      run: cd php && make setup
+    - name: Run test
+      run: cd php && make test
