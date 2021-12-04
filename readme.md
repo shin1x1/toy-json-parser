@@ -8,6 +8,7 @@ Currently, the following languages are being implemented.
 * PHP 8.0
 * Rust
 * Scala 3.1
+* Go 1.17
 
 ## How to implement JSON parser
 
