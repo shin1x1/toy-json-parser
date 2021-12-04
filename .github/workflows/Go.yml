@@ -1,0 +1,17 @@
+name: Go
+
+on:
+  push:
+    paths:
+      - Go/**
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+      - name: Setup Go
+        uses: actions/setup-go@v2
+      - name: Run test
+        run: go test -v ./...
