@@ -6,6 +6,7 @@ import (
 	"github.com/shin1x1/toy-json-parser/Go/lexer"
 	"github.com/shin1x1/toy-json-parser/Go/parser"
 	"io"
+	"math"
 	"os"
 )
 
@@ -62,8 +63,16 @@ func dump(v *parser.JsonValue) string {
 	case parser.ValueTypeString:
 		output = fmt.Sprintf("\"%s\"", v.String())
 	case parser.ValueTypeNumber:
-		output = fmt.Sprintf("%f", v.Number())
+		output = dumpNumber(v.Number())
 	}
 
 	return output
+}
+
+func dumpNumber(f float64) string {
+	if f == math.Trunc(f) {
+		return fmt.Sprintf("%d", int(f))
+	}
+
+	return fmt.Sprintf("%f", f)
 }
