@@ -17,5 +17,7 @@ jobs:
           go-version: '1.17'
       - name: Run test
         run: go test -v ./...
+        working-directory: Go
       - name: Run go vet
         run: go vet ./...
+        working-directory: Go
