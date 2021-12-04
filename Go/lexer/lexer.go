@@ -180,7 +180,7 @@ func (l *Lexer) lexToken(literal string, tokenType TokenType) (*Token, error) {
 		}
 
 		if r != lr {
-			return nil, fmt.Errorf("unexpected literall:%c", r)
+			return nil, fmt.Errorf("unexpected literal:%c", r)
 		}
 	}
 
