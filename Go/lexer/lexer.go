@@ -16,7 +16,7 @@ func NewLexer(scanner *Scanner) *Lexer {
 }
 
 func NewLexerWithString(s string) *Lexer {
-	return &Lexer{scanner: NewScanner(s)}
+	return &Lexer{scanner: NewScannerString(s)}
 }
 
 func (l *Lexer) GetNextToken() (*Token, error) {

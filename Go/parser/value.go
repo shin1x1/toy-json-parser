@@ -40,3 +40,23 @@ func NewJsonValueArray(value []*JsonValue) *JsonValue {
 func NewJsonValueObject(value map[string]*JsonValue) *JsonValue {
 	return &JsonValue{valueType: ValueTypeObject, objectValue: value}
 }
+
+func (j JsonValue) Type() ValueType {
+	return j.valueType
+}
+
+func (j JsonValue) String() string {
+	return j.stringValue
+}
+
+func (j JsonValue) Number() float64 {
+	return j.numberValue
+}
+
+func (j JsonValue) Array() []*JsonValue {
+	return j.arrayValue
+}
+
+func (j JsonValue) Object() map[string]*JsonValue {
+	return j.objectValue
+}

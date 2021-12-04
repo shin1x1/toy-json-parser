@@ -3,13 +3,14 @@ package parser
 import (
 	"fmt"
 	"github.com/shin1x1/toy-json-parser/Go/lexer"
+	"io"
 	"reflect"
 	"testing"
 )
 
 func TestParser_parse(t *testing.T) {
-	json := "[true,false,null,\"a\",{\"key\": 1\n\r\t}]"
-	sut := NewParser(lexer.NewLexer(lexer.NewScanner(json)))
+	json := "[true,false,null,\"a\",{\"key\": 1\n\r\t, \"key2\":0}]"
+	sut := NewParser(lexer.NewLexer(lexer.NewScannerString(json)))
 
 	tests := []struct {
 		want *JsonValue
@@ -21,7 +22,8 @@ func TestParser_parse(t *testing.T) {
 				NewJsonValue(ValueTypeNull),
 				NewJsonValueString("a"),
 				NewJsonValueObject(map[string]*JsonValue{
-					"key": NewJsonValueNumber(1),
+					"key":  NewJsonValueNumber(1),
+					"key2": NewJsonValueNumber(0),
 				}),
 			}),
 		},
@@ -30,13 +32,13 @@ func TestParser_parse(t *testing.T) {
 		t.Run(fmt.Sprintf("%d", i), func(t *testing.T) {
 			got, err := sut.Parse()
 			if !reflect.DeepEqual(got, tt.want) || err != nil {
-				t.Errorf("GetNextToken() got = %+v, want %+v", got, tt.want)
+				t.Errorf("GetNextToken() got = %#v, want %#v", got, tt.want)
 			}
 		})
 	}
 
 	_, err := sut.Parse()
-	if _, ok := err.(lexer.EotError); !ok {
+	if err != io.EOF {
 		t.Errorf("Parse() should return error")
 	}
 }

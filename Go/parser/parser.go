@@ -10,7 +10,7 @@ type UnexpectedToken struct {
 }
 
 func (u UnexpectedToken) Error() string {
-	return fmt.Sprintf("unexpected token: %+v", u.token)
+	return fmt.Sprintf("unexpected token: %#v", u.token)
 }
 
 type Parser struct {
@@ -165,17 +165,12 @@ func (p *Parser) parseObject() (*JsonValue, error) {
 
 			state = ObjectComma
 		case ObjectComma:
-			v, err := p.parseValue(t)
-			if err != nil {
-				return nil, err
+			if t.Type() != lexer.TokenString {
+				return nil, UnexpectedToken{token: t}
 			}
 
-			if key == "" {
-				return nil, fmt.Errorf("invalid key")
-			}
-
-			m[key] = v
-			state = ObjectValue
+			key = t.String()
+			state = ObjectKey
 		}
 	}
 }

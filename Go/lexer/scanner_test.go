@@ -1,12 +1,15 @@
 package lexer
 
-import "testing"
+import (
+	"io"
+	"testing"
+)
 
 func TestScanner_peek(t *testing.T) {
 	var got, want rune
 	var err error
 
-	sut := NewScanner("12")
+	sut := NewScannerString("12")
 
 	got, err = sut.peek()
 	want = '1'
@@ -32,13 +35,13 @@ func TestScanner_peek(t *testing.T) {
 		t.Errorf("peek() got = %v, want %v", got, want)
 	}
 
-	got, err = sut.peek()
-	if err == nil {
-		t.Errorf("peek() error got = %v", err)
+	_, err = sut.peek()
+	if err != io.EOF {
+		t.Errorf("peek() should be EotError, but got = %v", err)
 	}
 
-	got, err = sut.consume()
-	if err == nil {
-		t.Errorf("peek() error got = %v", err)
+	_, err = sut.consume()
+	if err != io.EOF {
+		t.Errorf("consume() should be EotError, but got = %v", err)
 	}
 }

@@ -2,12 +2,13 @@ package lexer
 
 import (
 	"fmt"
+	"io"
 	"reflect"
 	"testing"
 )
 
 func TestLexer_GetNextToken(t *testing.T) {
-	sut := NewLexer(NewScanner("[]{}:,123,true,false,null,\"\\\"あa\""))
+	sut := NewLexer(NewScannerString("[]{}:,123,true,false,null,\"\\\"あa\""))
 
 	tests := []struct {
 		want *Token
@@ -68,13 +69,13 @@ func TestLexer_GetNextToken(t *testing.T) {
 	}
 
 	_, err := sut.GetNextToken()
-	if _, ok := err.(EotError); !ok {
-		t.Errorf("GetNextToken() should be EOT")
+	if err != io.EOF {
+		t.Errorf("GetNextToken() should be EOF")
 	}
 }
 
 func TestLexer_GetNextToken_lexCodepoint(t *testing.T) {
-	sut := NewLexer(NewScanner("\"\\\"\\/\\b\\f\\n\\t\\u3042\""))
+	sut := NewLexer(NewScannerString("\"\\\"\\/\\b\\f\\n\\t\\u3042\""))
 
 	want := NewTokenString("\"/\b\f\n\tあ")
 	got, err := sut.GetNextToken()
@@ -83,7 +84,7 @@ func TestLexer_GetNextToken_lexCodepoint(t *testing.T) {
 	}
 
 	_, err = sut.GetNextToken()
-	if _, ok := err.(EotError); !ok {
-		t.Errorf("GetNextToken() should be EOT")
+	if err != io.EOF {
+		t.Errorf("GetNextToken() should be EOF")
 	}
 }

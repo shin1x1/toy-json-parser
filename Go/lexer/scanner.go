@@ -1,22 +1,42 @@
 package lexer
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"io"
+	"strings"
+	"unicode"
+)
 
 type Scanner struct {
-	json     []rune
-	position int
+	reader  *bufio.Reader
+	current rune
+	error   error
 }
 
-func NewScanner(json string) *Scanner {
-	return &Scanner{json: []rune(json)}
+func NewScanner(reader io.Reader) *Scanner {
+	s := &Scanner{reader: bufio.NewReader(reader)}
+	s.read()
+
+	return s
+}
+
+func NewScannerString(s string) *Scanner {
+	return NewScanner(strings.NewReader(s))
+}
+
+func (s *Scanner) read() {
+	r, size, err := s.reader.ReadRune()
+	if s.current == unicode.ReplacementChar && size == 1 {
+		err = fmt.Errorf("invalid unicode")
+	}
+
+	s.current = r
+	s.error = err
 }
 
 func (s *Scanner) peek() (rune, error) {
-	if s.isEot() {
-		return 0, EotError{}
-	}
-
-	return s.json[s.position], nil
+	return s.current, s.error
 }
 
 func (s *Scanner) consume() (rune, error) {
@@ -25,13 +45,9 @@ func (s *Scanner) consume() (rune, error) {
 		return c, err
 	}
 
-	s.position = s.position + 1
+	s.read()
 
 	return c, nil
-}
-
-func (s *Scanner) isEot() bool {
-	return s.position >= len(s.json)
 }
 
 type EotError struct {
