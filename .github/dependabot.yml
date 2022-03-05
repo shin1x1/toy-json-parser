@@ -1,0 +1,26 @@
+version: 2
+updates:
+  - package-ecosystem: "gomod"
+    directory: "/Go"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "gradle"
+    directory: "/Java"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "gradle"
+    directory: "/Kotlin"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "composer"
+    directory: "/PHP"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "cargo"
+    directory: "/Rust"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "cargo"
+    directory: "/Rust"
+    schedule:
+      interval: "weekly"
