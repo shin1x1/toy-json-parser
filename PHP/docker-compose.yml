@@ -1,7 +1,7 @@
 version: '3'
 services:
   php-cli: &php
-    image: shin1x1/php-dev:8.0-cli-buster
+    image: shin1x1/php-dev:8.1-cli-bullseye
     working_dir: /var/www/html
     volumes:
       - .:/var/www/html:cached
