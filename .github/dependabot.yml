@@ -20,7 +20,3 @@ updates:
     directory: "/Rust"
     schedule:
       interval: "weekly"
-  - package-ecosystem: "cargo"
-    directory: "/Rust"
-    schedule:
-      interval: "weekly"
