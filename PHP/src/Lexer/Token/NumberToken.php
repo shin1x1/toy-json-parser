@@ -8,7 +8,7 @@ use JetBrains\PhpStorm\Immutable;
 
 final class NumberToken implements Token
 {
-    public function __construct(#[Immutable] private int|float $value)
+    public function __construct(#[Immutable] private readonly int|float $value)
     {
     }
 

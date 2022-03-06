@@ -1,7 +1,7 @@
 {
     "name": "shin1x1/php8-json-parser",
     "require": {
-        "php": ">=8",
+        "php": ">=8.1",
         "ext-mbstring": "*",
         "ext-json": "*"
     },

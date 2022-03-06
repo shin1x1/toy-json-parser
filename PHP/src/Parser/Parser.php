@@ -10,7 +10,7 @@ use Shin1x1\ToyJsonParser\Parser\Exception\ParserException;
 
 final class Parser
 {
-    public function __construct(private Lexer $lexer)
+    public function __construct(private readonly Lexer $lexer)
     {
     }
 
