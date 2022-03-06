@@ -8,7 +8,7 @@ use JetBrains\PhpStorm\Immutable;
 
 final class StringToken implements Token
 {
-    public function __construct(#[Immutable] private string $value)
+    public function __construct(#[Immutable] private readonly string $value)
     {
     }
 

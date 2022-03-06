@@ -25,7 +25,7 @@ final class Lexer
     private int $length;
     private int $position;
 
-    public function __construct(#[Immutable] private string $json)
+    public function __construct(#[Immutable] private readonly string $json)
     {
         $this->length = strlen($this->json);
         $this->position = 0;
