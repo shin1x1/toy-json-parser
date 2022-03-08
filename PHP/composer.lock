@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6cf6414b5c56b4f1f759fdea4bb7fcf5",
+    "content-hash": "e6bf99d9f9ca992deb4cf451b484b455",
     "packages": [],
     "packages-dev": [
         {
@@ -555,16 +555,16 @@
         },
         {
             "name": "phpbench/phpbench",
-            "version": "1.2.3",
+            "version": "1.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpbench/phpbench.git",
-                "reference": "31750c45791a3e0bb7311aebfd1a4ed6f8f3fc86"
+                "reference": "a38af132cf317fd13c199cf73501153b82c279b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpbench/phpbench/zipball/31750c45791a3e0bb7311aebfd1a4ed6f8f3fc86",
-                "reference": "31750c45791a3e0bb7311aebfd1a4ed6f8f3fc86",
+                "url": "https://api.github.com/repos/phpbench/phpbench/zipball/a38af132cf317fd13c199cf73501153b82c279b5",
+                "reference": "a38af132cf317fd13c199cf73501153b82c279b5",
                 "shasum": ""
             },
             "require": {
@@ -606,7 +606,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1-dev"
+                    "dev-master": "1.2-dev"
                 }
             },
             "autoload": {
@@ -631,7 +631,7 @@
             "description": "PHP Benchmarking Framework",
             "support": {
                 "issues": "https://github.com/phpbench/phpbench/issues",
-                "source": "https://github.com/phpbench/phpbench/tree/1.2.3"
+                "source": "https://github.com/phpbench/phpbench/tree/1.2.5"
             },
             "funding": [
                 {
@@ -639,7 +639,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-12-24T10:09:29+00:00"
+            "time": "2022-03-06T17:10:14+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -2632,16 +2632,16 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v6.0.5",
+            "version": "v6.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "6646c13f787057d64701a3a0235cf9567c6ccbbd"
+                "reference": "52b888523545b0b4049ab9ce48766802484d7046"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/6646c13f787057d64701a3a0235cf9567c6ccbbd",
-                "reference": "6646c13f787057d64701a3a0235cf9567c6ccbbd",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/52b888523545b0b4049ab9ce48766802484d7046",
+                "reference": "52b888523545b0b4049ab9ce48766802484d7046",
                 "shasum": ""
             },
             "require": {
@@ -2675,7 +2675,7 @@
             "description": "Provides basic utilities for the filesystem",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/filesystem/tree/v6.0.5"
+                "source": "https://github.com/symfony/filesystem/tree/v6.0.6"
             },
             "funding": [
                 {
@@ -2691,7 +2691,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-02-28T07:42:30+00:00"
+            "time": "2022-03-02T12:58:14+00:00"
         },
         {
             "name": "symfony/finder",
@@ -3545,7 +3545,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=8",
+        "php": ">=8.1",
         "ext-mbstring": "*",
         "ext-json": "*"
     },
