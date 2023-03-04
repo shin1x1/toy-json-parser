@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Shin1x1\ToyJsonParser\Lexer;
 
-use JetBrains\PhpStorm\Immutable;
 use Shin1x1\ToyJsonParser\Lexer\Exception\LexerException;
 use Shin1x1\ToyJsonParser\Lexer\Token\ColonToken;
 use Shin1x1\ToyJsonParser\Lexer\Token\CommaToken;
@@ -25,7 +24,7 @@ final class Lexer
     private int $length;
     private int $position;
 
-    public function __construct(#[Immutable] private readonly string $json)
+    public function __construct(private readonly string $json)
     {
         $this->length = strlen($this->json);
         $this->position = 0;
@@ -108,7 +107,7 @@ final class Lexer
             throw new LexerException('Invalid code point');
         }
 
-        return mb_chr(hexdec($codepoint));
+        return mb_chr((int)hexdec($codepoint));
     }
 
     /**
@@ -226,6 +225,14 @@ final class Lexer
         throw new LexerException('Invalid number:' . $ch);
     }
 
+    /**
+     * @template T of TrueToken|FalseToken|NullToken
+     *
+     * @param string $expectedName
+     * @param class-string<T> $klass
+     * @return T
+     * @throws LexerException
+     */
     private function getLiteralToken(string $expectedName, string $klass): TrueToken|FalseToken|NullToken
     {
         $name = $expectedName[0];

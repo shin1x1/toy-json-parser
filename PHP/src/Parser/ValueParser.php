@@ -17,6 +17,9 @@ use Shin1x1\ToyJsonParser\Parser\Exception\ParserException;
 
 final class ValueParser
 {
+    /**
+     * @return array<int|string, mixed>|string|int|float|bool|null
+     */
     public static function parse(Lexer $lexer, Token $token): array|string|int|float|bool|null
     {
         return match (true) {

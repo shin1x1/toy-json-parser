@@ -17,7 +17,7 @@ class JsonParserTest extends TestCase
      * @dataProvider dataProvider
      * @param string $json
      */
-    public function parse(string $json)
+    public function parse(string $json): void
     {
         $sut = new JsonParser();
 
@@ -25,7 +25,10 @@ class JsonParserTest extends TestCase
         $this->assertSame($expected, $sut->parse($json));
     }
 
-    public function dataProvider(): array
+    /**
+     * @return array<string, array{0:string}>
+     */
+    public static function dataProvider(): array
     {
         return [
             'test'                             => [
@@ -91,7 +94,7 @@ class JsonParserTest extends TestCase
      * @dataProvider dataProvider_error
      * @param string $json
      */
-    public function parse_error(string $json)
+    public function parse_error(string $json): void
     {
         try {
             json_decode($json, associative: true, flags: JSON_THROW_ON_ERROR);
@@ -109,7 +112,10 @@ class JsonParserTest extends TestCase
         }
     }
 
-    public function dataProvider_error()
+    /**
+     * @return array<int, array{0:string}>
+     */
+    public static function dataProvider_error(): array
     {
         return [
             [''],

@@ -14,6 +14,9 @@ final class Parser
     {
     }
 
+    /**
+     * @return array<int|string, mixed>|string|int|float|bool|null
+     */
     public function parse(): array|string|int|float|bool|null
     {
         $ret = ValueParser::parse($this->lexer, $this->lexer->getNextToken());
