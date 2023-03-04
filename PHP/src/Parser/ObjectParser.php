@@ -22,6 +22,7 @@ final class ObjectParser
 
     /**
      * @see https://github.com/shin1x1/php8-toy-json-parser/blob/master/diagrams/object_parser.png
+     * @return array<string, mixed>
      */
     public static function parse(Lexer $lexer): array
     {

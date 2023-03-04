@@ -29,7 +29,7 @@ class LexerTest extends TestCase
      * @param Token[] $expected
      * @param string $json
      */
-    public function getNextToken(array $expected, string $json)
+    public function getNextToken(array $expected, string $json): void
     {
         $sut = new Lexer($json);
         $tokens = [];
@@ -43,7 +43,10 @@ class LexerTest extends TestCase
         $this->assertEquals($expected, $tokens);
     }
 
-    public function dataProvider(): array
+    /**
+     * @return array<string, array{0:Token[], 1:string}>
+     */
+    public static function dataProvider(): array
     {
         return [
             'example'          => [
@@ -121,7 +124,7 @@ class LexerTest extends TestCase
     /**
      * @test
      */
-    public function getNextToken_error()
+    public function getNextToken_error(): void
     {
         $this->expectException(LexerException::class);
         $this->expectExceptionMessage('Invalid character a');
@@ -135,7 +138,7 @@ class LexerTest extends TestCase
     /**
      * @test
      */
-    public function getNextToken_error_literal()
+    public function getNextToken_error_literal(): void
     {
         $this->expectException(LexerException::class);
         $this->expectExceptionMessage('Unexpected literal nul]');
@@ -149,7 +152,7 @@ class LexerTest extends TestCase
     /**
      * @test
      */
-    public function getNextToken_error_literal_end_of_text()
+    public function getNextToken_error_literal_end_of_text(): void
     {
         $this->expectException(LexerException::class);
         $this->expectExceptionMessage('Unexpected end of text');

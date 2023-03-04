@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Shin1x1\ToyJsonParser\Parser;
 
+use Shin1x1\ToyJsonParser\Lexer\Exception\LexerException;
 use Shin1x1\ToyJsonParser\Lexer\Lexer;
 use Shin1x1\ToyJsonParser\Lexer\Token\CommaToken;
 use Shin1x1\ToyJsonParser\Lexer\Token\EofToken;
@@ -18,6 +19,7 @@ final class ArrayParser
 
     /**
      * @see https://github.com/shin1x1/php8-toy-json-parser/blob/master/diagrams/array_parser.png
+     * @return array<int, mixed>
      */
     public static function parse(Lexer $lexer): array
     {
