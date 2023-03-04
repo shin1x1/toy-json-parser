@@ -22,7 +22,7 @@ class ParserTest {
                     JsonValue.Number(123.0),
                     JsonValue.String("abcあ"),
                     JsonValue.Number(0.0),
-                    JsonValue.Number(-23.2),
+                    JsonValue.Number(-23.2)
                 )
             ),
             JsonValue.Object(

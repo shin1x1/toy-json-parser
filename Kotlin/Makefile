@@ -4,5 +4,5 @@ build:
 
 .PHONY: test
 test:
-	./gradlew test
+	./gradlew test --info
 
