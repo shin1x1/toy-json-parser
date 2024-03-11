@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    testImplementation("org.jetbrains.kotlin:kotlin-test:1.9.22")
+    testImplementation("org.jetbrains.kotlin:kotlin-test:1.9.23")
 }
 
 tasks.test {
