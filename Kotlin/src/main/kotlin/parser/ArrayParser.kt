@@ -5,7 +5,9 @@ import lexer.Token
 
 object ArrayParser {
     private enum class State {
-        Default, Value, Comma
+        Default,
+        Value,
+        Comma,
     }
 
     fun parse(lexer: Lexer): Result<JsonValue.Array> {
@@ -25,6 +27,7 @@ object ArrayParser {
                         }
                     }
                 }
+
                 State.Value -> {
                     when (token) {
                         Token.RightBrace -> return Result.success(JsonValue.Array(array))
@@ -32,6 +35,7 @@ object ArrayParser {
                         else -> return Result.failure(InvalidTokenException(token))
                     }
                 }
+
                 State.Comma -> {
                     val ret = ValueParser.parse(lexer, token).getOrElse { return Result.failure(it) }
                     array = array.plus(ret)

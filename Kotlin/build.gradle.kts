@@ -6,6 +6,12 @@ plugins {
     application
 }
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(21))
+    }
+}
+
 group = "me.shin"
 version = "1.0-SNAPSHOT"
 
@@ -15,13 +21,14 @@ repositories {
 
 dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test:1.9.23")
+    ktlint("com.pinterest.ktlint:ktlint-cli:1.2.1")
 }
 
 tasks.test {
     useJUnit()
 }
 
-tasks.withType<KotlinCompile>() {
+tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
 }
 
@@ -31,11 +38,4 @@ tasks.getByName("run", JavaExec::class) {
 
 application {
     mainClass.set("MainKt")
-}
-
-ktlint {
-    verbose.set(true)
-    outputToConsole.set(true)
-    coloredOutput.set(true)
-    disabledRules.set(setOf("no-wildcard-imports", "filename"))
 }

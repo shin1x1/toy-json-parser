@@ -5,7 +5,11 @@ import lexer.Token
 
 object ObjectParser {
     private enum class State {
-        Default, Value, Comma, Colon, Key,
+        Default,
+        Value,
+        Comma,
+        Colon,
+        Key,
     }
 
     fun parse(lexer: Lexer): Result<JsonValue.Object> {
@@ -23,15 +27,18 @@ object ObjectParser {
                             key = token.value
                             state = State.Key
                         }
+
                         else -> return Result.failure(InvalidTokenException(token))
                     }
                 }
+
                 State.Key -> {
                     when (token) {
                         Token.Colon -> state = State.Colon
                         else -> return Result.failure(InvalidTokenException(token))
                     }
                 }
+
                 State.Colon -> {
                     if (key.isEmpty()) return Result.failure(InvalidTokenException(token))
 
@@ -39,6 +46,7 @@ object ObjectParser {
                     map = map.plus(key to ret)
                     state = State.Value
                 }
+
                 State.Value -> {
                     when (token) {
                         Token.RightBracket -> return Result.success(JsonValue.Object(map))
@@ -46,12 +54,14 @@ object ObjectParser {
                         else -> return Result.failure(InvalidTokenException(token))
                     }
                 }
+
                 State.Comma -> {
                     when (token) {
                         is Token.String -> {
                             key = token.value
                             state = State.Key
                         }
+
                         else -> return Result.failure(InvalidTokenException(token))
                     }
                 }
