@@ -7,7 +7,7 @@ class Lexer(private val stream: CharacterStream) {
     fun getNextToken(): Result<Token> {
         return stream.consume().fold(
             onSuccess = { detectToken(it) },
-            onFailure = { Result.failure(it) }
+            onFailure = { Result.failure(it) },
         )
     }
 
@@ -47,7 +47,10 @@ class Lexer(private val stream: CharacterStream) {
         return Result.success(Token.Number(chs.fold("") { c, acc -> c + acc }.toDouble()))
     }
 
-    private fun lexLiteral(keyword: String, token: Token): Result<Token> {
+    private fun lexLiteral(
+        keyword: String,
+        token: Token,
+    ): Result<Token> {
         for (i in 2..keyword.length) {
             val ch = stream.consume().getOrElse { return Result.failure(it) }
 
@@ -85,6 +88,7 @@ private object StringLexer {
 
                     string.append(ch)
                 }
+
                 true -> {
                     backslash = false
                     when (ch) {
@@ -99,7 +103,7 @@ private object StringLexer {
                         'u' -> {
                             lexCodepoint(stream).fold(
                                 onSuccess = { string.append(it) },
-                                onFailure = { return Result.failure(it) }
+                                onFailure = { return Result.failure(it) },
                             )
                         }
                     }
@@ -109,18 +113,20 @@ private object StringLexer {
     }
 
     private fun lexCodepoint(stream: CharacterStream): Result<Char> {
-        fun isHex(ch: Char): Boolean = when (ch) {
-            in '0'..'9' -> true
-            in 'A'..'F' -> true
-            else -> false
-        }
+        fun isHex(ch: Char): Boolean =
+            when (ch) {
+                in '0'..'9' -> true
+                in 'A'..'F' -> true
+                else -> false
+            }
 
         var code = 0
         for (i in 0..3) {
-            val hex = stream.consume().fold(
-                onSuccess = { if (isHex(it)) it else return Result.failure(Exception("Invalid hex: $it")) },
-                onFailure = { return Result.failure(it) }
-            )
+            val hex =
+                stream.consume().fold(
+                    onSuccess = { if (isHex(it)) it else return Result.failure(Exception("Invalid hex: $it")) },
+                    onFailure = { return Result.failure(it) },
+                )
 
             code += (hex - '0') * (16.0.pow(3 - i)).toInt()
         }

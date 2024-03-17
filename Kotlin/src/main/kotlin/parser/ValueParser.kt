@@ -4,7 +4,10 @@ import lexer.Lexer
 import lexer.Token
 
 object ValueParser {
-    fun parse(lexer: Lexer, token: Token): Result<JsonValue> {
+    fun parse(
+        lexer: Lexer,
+        token: Token,
+    ): Result<JsonValue> {
         return when (token) {
             Token.Null -> Result.success(JsonValue.Null)
             Token.True -> Result.success(JsonValue.True)

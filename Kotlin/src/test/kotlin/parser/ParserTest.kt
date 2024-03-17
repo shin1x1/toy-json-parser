@@ -13,28 +13,30 @@ class ParserTest {
         val json = """[null,true,false,[123,"abcあ",0,-23.2],{"name": {"no":10e2}}]"""
         val sut = Parser(Lexer(CharacterStream(json)))
 
-        val array = listOf(
-            JsonValue.Null,
-            JsonValue.True,
-            JsonValue.False,
-            JsonValue.Array(
-                listOf(
-                    JsonValue.Number(123.0),
-                    JsonValue.String("abcあ"),
-                    JsonValue.Number(0.0),
-                    JsonValue.Number(-23.2)
-                )
-            ),
-            JsonValue.Object(
-                mapOf(
-                    "name" to JsonValue.Object(
-                        mapOf(
-                            "no" to JsonValue.Number(1000.0)
-                        )
-                    )
-                )
+        val array =
+            listOf(
+                JsonValue.Null,
+                JsonValue.True,
+                JsonValue.False,
+                JsonValue.Array(
+                    listOf(
+                        JsonValue.Number(123.0),
+                        JsonValue.String("abcあ"),
+                        JsonValue.Number(0.0),
+                        JsonValue.Number(-23.2),
+                    ),
+                ),
+                JsonValue.Object(
+                    mapOf(
+                        "name" to
+                            JsonValue.Object(
+                                mapOf(
+                                    "no" to JsonValue.Number(1000.0),
+                                ),
+                            ),
+                    ),
+                ),
             )
-        )
 
         assertEquals(JsonValue.Array(array), sut.parse().getOrThrow())
     }
