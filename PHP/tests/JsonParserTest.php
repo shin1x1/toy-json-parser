@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Shin1x1\ToyJsonParser\Test;
 
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Shin1x1\ToyJsonParser\JsonParser;
 use Shin1x1\ToyJsonParser\Lexer\Exception\LexerException;
@@ -12,11 +14,8 @@ use Throwable;
 
 class JsonParserTest extends TestCase
 {
-    /**
-     * @test
-     * @dataProvider dataProvider
-     * @param string $json
-     */
+    #[Test]
+    #[DataProvider('dataProvider')]
     public function parse(string $json): void
     {
         $sut = new JsonParser();
@@ -89,11 +88,8 @@ class JsonParserTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     * @dataProvider dataProvider_error
-     * @param string $json
-     */
+    #[Test]
+    #[DataProvider('dataProvider_error')]
     public function parse_error(string $json): void
     {
         try {

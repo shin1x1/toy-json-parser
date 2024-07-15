@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Shin1x1\ToyJsonParser\Test\Lexer;
 
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Shin1x1\ToyJsonParser\Lexer\Exception\LexerException;
 use Shin1x1\ToyJsonParser\Lexer\Lexer;
@@ -24,11 +26,10 @@ use Shin1x1\ToyJsonParser\Lexer\Token\TrueToken;
 class LexerTest extends TestCase
 {
     /**
-     * @test
-     * @dataProvider dataProvider
      * @param Token[] $expected
-     * @param string $json
      */
+    #[Test]
+    #[DataProvider('dataProvider')]
     public function getNextToken(array $expected, string $json): void
     {
         $sut = new Lexer($json);
@@ -121,9 +122,7 @@ class LexerTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getNextToken_error(): void
     {
         $this->expectException(LexerException::class);
@@ -135,9 +134,7 @@ class LexerTest extends TestCase
         }
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getNextToken_error_literal(): void
     {
         $this->expectException(LexerException::class);
@@ -149,9 +146,7 @@ class LexerTest extends TestCase
         }
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getNextToken_error_literal_end_of_text(): void
     {
         $this->expectException(LexerException::class);
