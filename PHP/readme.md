@@ -14,7 +14,7 @@ $ make
 
 ```php
 $ echo '{"a":100,"b":[true,"hello",23e10]}' | make run
-docker-compose run --rm php-ci php parser.php
+docker compose run --rm php-ci php parser.php
 Creating php_php-ci_run ... done
 array(2) {
   ["a"]=>
