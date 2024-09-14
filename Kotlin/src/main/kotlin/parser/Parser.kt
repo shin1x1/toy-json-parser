@@ -3,7 +3,9 @@ package parser
 import lexer.Lexer
 import stream.EotException
 
-class Parser(private val lexer: Lexer) {
+class Parser(
+    private val lexer: Lexer,
+) {
     fun parse(): Result<JsonValue> {
         if (lexer.isEot()) {
             return Result.success(JsonValue.Null)

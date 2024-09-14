@@ -3,16 +3,17 @@ package lexer
 import stream.CharacterStream
 import kotlin.math.pow
 
-class Lexer(private val stream: CharacterStream) {
-    fun getNextToken(): Result<Token> {
-        return stream.consume().fold(
+class Lexer(
+    private val stream: CharacterStream,
+) {
+    fun getNextToken(): Result<Token> =
+        stream.consume().fold(
             onSuccess = { detectToken(it) },
             onFailure = { Result.failure(it) },
         )
-    }
 
-    private fun detectToken(ch: Char): Result<Token> {
-        return when (ch) {
+    private fun detectToken(ch: Char): Result<Token> =
+        when (ch) {
             '[' -> Result.success(Token.LeftBrace)
             ']' -> Result.success(Token.RightBrace)
             '{' -> Result.success(Token.LeftBracket)
@@ -28,7 +29,6 @@ class Lexer(private val stream: CharacterStream) {
             ' ', '\n', '\r', '\t' -> getNextToken()
             else -> Result.failure(UnknownTokenException(ch, stream.position, stream.readText()))
         }
-    }
 
     private fun lexNumber(first: Char): Result<Token.Number> {
         var chs = listOf(first)

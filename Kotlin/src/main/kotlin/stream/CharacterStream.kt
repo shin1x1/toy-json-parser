@@ -2,7 +2,9 @@ package stream
 
 import java.io.InputStream
 
-class CharacterStream(inputStream: InputStream) {
+class CharacterStream(
+    inputStream: InputStream,
+) {
     private val reader = inputStream.reader()
     private var current: Int = read()
     private val readText = StringBuilder()
@@ -11,19 +13,16 @@ class CharacterStream(inputStream: InputStream) {
         private set
 
     companion object {
-        operator fun invoke(json: String): CharacterStream {
-            return CharacterStream(json.byteInputStream())
-        }
+        operator fun invoke(json: String): CharacterStream = CharacterStream(json.byteInputStream())
     }
 
     private fun read(): Int = reader.read()
 
-    fun peek(): Result<Char> {
-        return when (isEot()) {
+    fun peek(): Result<Char> =
+        when (isEot()) {
             true -> Result.failure(EotException())
             false -> Result.success(current.toChar())
         }
-    }
 
     fun consume(): Result<Char> {
         val ch = peek()
@@ -37,12 +36,11 @@ class CharacterStream(inputStream: InputStream) {
         return ch
     }
 
-    fun isEot(): Boolean {
-        return when (current) {
+    fun isEot(): Boolean =
+        when (current) {
             -1 -> true
             else -> false
         }
-    }
 
     fun readText() = readText.toString()
 }
