@@ -7,8 +7,8 @@ object ValueParser {
     fun parse(
         lexer: Lexer,
         token: Token,
-    ): Result<JsonValue> {
-        return when (token) {
+    ): Result<JsonValue> =
+        when (token) {
             Token.Null -> Result.success(JsonValue.Null)
             Token.True -> Result.success(JsonValue.True)
             Token.False -> Result.success(JsonValue.False)
@@ -18,5 +18,4 @@ object ValueParser {
             is Token.LeftBracket -> ObjectParser.parse(lexer)
             else -> Result.failure(InvalidTokenException(Token.Null))
         }
-    }
 }

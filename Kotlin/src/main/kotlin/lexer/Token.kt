@@ -37,11 +37,15 @@ sealed interface Token {
         override fun toString(): kotlin.String = "RightBracket"
     }
 
-    data class Number(val value: Double) : Token {
+    data class Number(
+        val value: Double,
+    ) : Token {
         override fun toString(): kotlin.String = "Number:$value"
     }
 
-    data class String(val value: kotlin.String) : Token {
+    data class String(
+        val value: kotlin.String,
+    ) : Token {
         override fun toString(): kotlin.String = "String:$value"
     }
 }
