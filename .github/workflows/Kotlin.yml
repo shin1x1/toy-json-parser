@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - Kotlin/**
+      - .github/workflows/Kotlin.yml
 
 jobs:
   build:
