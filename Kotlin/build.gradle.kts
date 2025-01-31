@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-    testImplementation("org.jetbrains.kotlin:kotlin-test:2.1.0")
+    testImplementation("org.jetbrains.kotlin:kotlin-test:2.1.10")
     ktlint("com.pinterest.ktlint:ktlint-cli:1.5.0")
 }
 
