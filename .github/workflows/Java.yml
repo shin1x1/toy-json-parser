@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - Java/**
+      - .github/workflows/Java.yml
 
 jobs:
   build:
