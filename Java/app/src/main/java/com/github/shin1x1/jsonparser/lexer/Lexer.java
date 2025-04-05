@@ -3,7 +3,7 @@ package com.github.shin1x1.jsonparser.lexer;
 import com.github.shin1x1.jsonparser.lexer.exception.UnexpectedCharacterException;
 import com.github.shin1x1.jsonparser.lexer.exception.UnexpectedEotException;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 import java.io.IOException;
 import java.util.Optional;
 

@@ -21,7 +21,8 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.11.0'
 
     // This dependency is used by the application.
-    implementation 'com.google.guava:guava:33.3.0-jre'
+    implementation 'com.google.guava:guava:33.4.6-jre'
+    implementation 'jakarta.annotation:jakarta.annotation-api:3.0.0'
 }
 
 application {

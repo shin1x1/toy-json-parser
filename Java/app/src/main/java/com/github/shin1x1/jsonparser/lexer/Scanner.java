@@ -1,6 +1,6 @@
 package com.github.shin1x1.jsonparser.lexer;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;

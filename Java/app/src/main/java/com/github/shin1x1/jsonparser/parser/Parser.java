@@ -6,7 +6,7 @@ import com.github.shin1x1.jsonparser.lexer.exception.UnexpectedEotException;
 import com.github.shin1x1.jsonparser.parser.exception.NoKeyException;
 import com.github.shin1x1.jsonparser.parser.exception.UnexpectedTokenException;
 
-import javax.annotation.Nonnull;
+import jakarta.annotation.Nonnull;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
