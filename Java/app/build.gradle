@@ -22,6 +22,7 @@ dependencies {
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:33.4.6-jre'
+    implementation 'jakarta.annotation:jakarta.annotation-api:3.0.0'
 }
 
 application {
