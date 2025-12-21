@@ -21,8 +21,8 @@ repositories {
 }
 
 dependencies {
+    ktlint("com.pinterest.ktlint:ktlint-cli:1.8.0")
     testImplementation("org.jetbrains.kotlin:kotlin-test:2.3.0")
-    ktlint("com.pinterest.ktlint:ktlint-cli:1.7.1")
 }
 
 tasks.test {

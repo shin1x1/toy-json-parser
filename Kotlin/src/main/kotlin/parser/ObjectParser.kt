@@ -22,13 +22,18 @@ object ObjectParser {
             when (state) {
                 State.Default -> {
                     when (token) {
-                        Token.RightBracket -> return Result.success(JsonValue.Object(map))
+                        Token.RightBracket -> {
+                            return Result.success(JsonValue.Object(map))
+                        }
+
                         is Token.String -> {
                             key = token.value
                             state = State.Key
                         }
 
-                        else -> return Result.failure(InvalidTokenException(token))
+                        else -> {
+                            return Result.failure(InvalidTokenException(token))
+                        }
                     }
                 }
 
@@ -62,7 +67,9 @@ object ObjectParser {
                             state = State.Key
                         }
 
-                        else -> return Result.failure(InvalidTokenException(token))
+                        else -> {
+                            return Result.failure(InvalidTokenException(token))
+                        }
                     }
                 }
             }

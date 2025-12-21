@@ -92,14 +92,38 @@ private object StringLexer {
                 true -> {
                     backslash = false
                     when (ch) {
-                        '"' -> string.append('"')
-                        '\\' -> string.append('\\')
-                        '/' -> string.append('/')
-                        'b' -> string.append('\b')
-                        'f' -> string.append(0xF.toChar())
-                        'n' -> string.append('\n')
-                        'r' -> string.append('\r')
-                        't' -> string.append('\t')
+                        '"' -> {
+                            string.append('"')
+                        }
+
+                        '\\' -> {
+                            string.append('\\')
+                        }
+
+                        '/' -> {
+                            string.append('/')
+                        }
+
+                        'b' -> {
+                            string.append('\b')
+                        }
+
+                        'f' -> {
+                            string.append(0xF.toChar())
+                        }
+
+                        'n' -> {
+                            string.append('\n')
+                        }
+
+                        'r' -> {
+                            string.append('\r')
+                        }
+
+                        't' -> {
+                            string.append('\t')
+                        }
+
                         'u' -> {
                             lexCodepoint(stream).fold(
                                 onSuccess = { string.append(it) },
