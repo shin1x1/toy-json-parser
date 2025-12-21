@@ -19,7 +19,10 @@ object ArrayParser {
             when (state) {
                 State.Default -> {
                     when (token) {
-                        Token.RightBrace -> return Result.success(JsonValue.Array(array))
+                        Token.RightBrace -> {
+                            return Result.success(JsonValue.Array(array))
+                        }
+
                         else -> {
                             val ret = ValueParser.parse(lexer, token).getOrElse { return Result.failure(it) }
                             array = array.plus(ret)
