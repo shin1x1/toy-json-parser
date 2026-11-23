@@ -6,7 +6,7 @@
         "ext-json": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "^11",
+        "phpunit/phpunit": "^13",
         "phpbench/phpbench": "^1.2.3",
         "phpstan/phpstan": "^2.0"
     },
